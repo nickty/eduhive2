@@ -4,12 +4,12 @@ import './App.css';
 import { useState } from 'react';
 import axios from 'axios';
 function App() {
-  const [username, setusername] = useState({});
+  const [username, setusername] = useState();
   const [register, setRegister] = useState('');
 
   const handleInput = (e) => {
-    // console.log(e.target.text);
-    setusername(e.target.text);
+    // console.log(e.target.value);
+    setusername(e.target.value);
   };
 
   const handleSubmit = async () => {
@@ -19,16 +19,16 @@ function App() {
         headers: {
           'Content-type': 'application/json', // or remove this headers section
         },
-        data: {hey: 'hi'},
+        data: username,
       };
       const response = await axios.post('http://localhost:5000/user', options);
 
-      // if (response.data.ok === false) {
-      //   setRegister(response.data.message);
-      // }
-      // if (response.data.ok === true) {
-      //   setRegister('User added succesfully!');
-      // }
+      if (response.data.ok === false) {
+        setRegister(response.data.message);
+      }
+      if (response.data.ok === true) {
+        setRegister('User added succesfully!');
+      }
 
       console.log(response)
       
