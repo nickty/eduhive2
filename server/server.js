@@ -4,6 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const { createPost } = require('./controller/post');
 const app = express();
+const bodyParser = require('body-parser')
 const { createUser } = require('./controller/user');
 
 mongoose
@@ -26,6 +27,15 @@ const cors = require('cors');
 app.use(cors());
 
 app.use(express.json());
+
+
+app.use(
+  bodyParser.urlencoded({
+      extended: false
+  })
+);
+
+app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
   res.status(200).send('Hello World!');

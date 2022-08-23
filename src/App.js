@@ -3,9 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
 import axios from 'axios';
-
 function App() {
-  const [username, setusername] = useState('');
+  const [username, setusername] = useState({});
   const [register, setRegister] = useState('');
 
   const handleInput = (e) => {
@@ -18,20 +17,21 @@ function App() {
       const options = {
         method: 'POST',
         headers: {
-          'Content-type': 'text/plain', // or remove this headers section
+          'Content-type': 'application/json', // or remove this headers section
         },
-        data: username,
+        data: {hey: 'hi'},
       };
-      const response = await axios.post('/user', {
-        data: username,
-      });
+      const response = await axios.post('http://localhost:5000/user', options);
 
-      if (response.data.ok === false) {
-        setRegister(response.data.message);
-      }
-      if (response.data.ok === true) {
-        setRegister('User added succesfully!');
-      }
+      // if (response.data.ok === false) {
+      //   setRegister(response.data.message);
+      // }
+      // if (response.data.ok === true) {
+      //   setRegister('User added succesfully!');
+      // }
+
+      console.log(response)
+      
     } catch (e) {
       console.log(e);
     }
