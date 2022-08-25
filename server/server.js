@@ -4,7 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const { createPost } = require('./controller/post');
 const app = express();
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 const { createUser } = require('./controller/user');
 
 mongoose
@@ -23,15 +23,13 @@ mongoose
     console.log('not connected');
   });
 
+app.use(express.json());
 const cors = require('cors');
 app.use(cors());
 
-app.use(express.json());
-
-
 app.use(
   bodyParser.urlencoded({
-      extended: false
+    extended: false,
   })
 );
 

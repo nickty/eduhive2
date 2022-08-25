@@ -1,3 +1,4 @@
+/** @format */
 
 import logo from './logo.svg';
 import './App.css';
@@ -19,7 +20,7 @@ function App() {
         headers: {
           'Content-type': 'application/json', // or remove this headers section
         },
-        data: username,
+        data: { username },
       };
       const response = await axios.post('http://localhost:5000/user', options);
 
@@ -30,8 +31,7 @@ function App() {
         setRegister('User added succesfully!');
       }
 
-      console.log(response)
-      
+      console.log(response);
     } catch (e) {
       console.log(e);
     }
